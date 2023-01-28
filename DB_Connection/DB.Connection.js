@@ -3,7 +3,7 @@ mongoose.set("strictQuery", true);
 
 const connection = mongoose
   .connect(
-    "mongodb+srv://dudhaTdarshangmailcom:5Fxt2hOXbK1A86O8@cluster0.nzjaafo.mongodb.net/hotel",
+    "mongodb+srv://dudhaTdarshangmailcom:5Fxt2hOXbK1A86O8@cluster0.nzjaafo.mongodb.net/a",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -11,9 +11,6 @@ const connection = mongoose
   )
   .then(() => {
     console.log("DataBase Connection successfully");
-  })
-  .catch(() => {
-    console.log("err");
   });
 
 module.exports = connection;
