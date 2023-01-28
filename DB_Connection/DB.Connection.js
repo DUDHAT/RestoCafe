@@ -3,7 +3,7 @@ mongoose.set("strictQuery", true);
 
 const connection = mongoose
   .connect(
-    "mongodb+srv://Vinit04:bMoptmtm0eV8mk1I@cluster0.zefyhxr.mongodb.net/RestoCafe",
+    "mongodb+srv://dudhaTdarshangmailcom:5Fxt2hOXbK1A86O8@cluster0.nzjaafo.mongodb.net/hotel",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
