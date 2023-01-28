@@ -13,7 +13,7 @@ const connection = mongoose
     console.log("DataBase Connection successfully");
   })
   .catch((err) => {
-    console.log("DataBase Connection successfully");
+    console.log("hello world");
   });
 
 module.exports = connection;
