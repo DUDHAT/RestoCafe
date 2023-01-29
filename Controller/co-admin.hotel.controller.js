@@ -168,3 +168,25 @@ exports.coAdminShowSit = async (req, res) => {
     res.send(data);
   });
 };
+
+exports.edittime = async (req, res) => {
+  CoAdminTime.find().then((data) => {
+    data.forEach((element) => {
+      const aa = element;
+      const coadminid = element.CoAdmindId;
+      CoAdmindetails.find(data[0].CoAdmindId).then((data) => {
+        a = data[0].sit;
+        const Array_obj = aa.time;
+        for (const i of Array_obj) {
+          i.sit = a;
+        }
+        CoAdminTime.updateOne(
+          { coadminid: coadminid },
+          { $set: { time: Array_obj } }
+        ).then((data) => {});
+      });
+    });
+
+    res.send(data);
+  });
+};

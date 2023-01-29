@@ -36,4 +36,5 @@ coadmin_router.post(
 coadmin_router.post("/Co-admin-edit-sit", coAdminController.CoAdminEditSit);
 
 coadmin_router.post("/co-Admin-Show-Sit", coAdminController.coAdminShowSit);
+coadmin_router.get("/co-Admin-edittime", coAdminController.edittime);
 module.exports = coadmin_router;
