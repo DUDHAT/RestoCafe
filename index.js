@@ -7,18 +7,18 @@ const adminRouter = require("./Router/admin.hotel.router");
 const coadmin_router = require("./Router/co-admin.hotel.router");
 const coadminProduct_router = require("./Router/co-admin.product.hotel.router");
 const User_router = require("./Router/user.hotel.router");
-const fileStorege = require("./Middleware/co-admin.logo.middleware");
+// const fileStorege = require("./Middleware/co-admin.logo.middleware");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(`${__dirname}/image`));
-app.use(
-  multer({
-    fileFilter: fileStorege.fileFilter,
-    storage: fileStorege.fileStorege,
-  }).any("image")
-);
+// app.use(express.static(`${__dirname}/image`));
+// app.use(
+//   multer({
+//     fileFilter: fileStorege.fileFilter,
+//     storage: fileStorege.fileStorege,
+//   }).any("image")
+// );
 app.use(adminRouter);
 app.use(coadmin_router);
 app.use(coadminProduct_router);
