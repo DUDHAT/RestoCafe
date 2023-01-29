@@ -5,7 +5,6 @@ const CoAdminProductAdd = new Schema({
   name: {
     type: String,
     required: true,
-    unique: false,
   },
   details: {
     type: String,
