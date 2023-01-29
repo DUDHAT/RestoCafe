@@ -98,91 +98,46 @@ exports.CoAdminEditDetails = async (req, res) => {
   const name = req.body.name;
   const contact = req.body.contact;
   const email = req.body.email;
-  const logos = req.files;
   const sit = req.body.sit;
   const ontime = req.body.ontime;
   const offtime = req.body.offtime;
-  let logo;
+  let logo = req.body.logo;
 
   let pic = [];
-  logos.forEach((element) => {
-    if (element.fieldname == "logo") {
-      logo = element.filename;
+  pic = req.body.pic;
+  await CoAdmindetails.updateOne(
+    { _id: id },
+    {
+      $set: {
+        name: name,
+        contact: contact,
+        email: email,
+        sit: sit,
+        ontime: ontime,
+        offtime: offtime,
+        logo: logo,
+      },
     }
-    if (element.fieldname == "pic") {
-      pic.push(element.filename);
-    }
+  ).then(async (data) => {
+    await CoAdmindetails.findOne({ _id: id }).then((data) => {
+      let arr = [];
+      const ontimes = parseInt(data.ontime, 10);
+
+      for (let i = ontimes; i <= data.offtime; i++) {
+        arr.push({ time: i, sit: data.sit });
+      }
+      const CoAdmindId = data._id;
+
+      CoAdminTime.updateOne(
+        { CoAdmindId: CoAdmindId },
+        { $set: { time: arr } }
+      ).then((data) => {
+        // console.log(data);
+      });
+    });
+
+    res.send(data);
   });
-
-  if (pic == "") {
-    await CoAdmindetails.updateOne(
-      { _id: id },
-      {
-        $set: {
-          name: name,
-          contact: contact,
-          email: email,
-          sit: sit,
-          ontime: ontime,
-          offtime: offtime,
-          logo: logo,
-        },
-      }
-    ).then(async (data) => {
-      await CoAdmindetails.findOne({ _id: id }).then((data) => {
-        let arr = [];
-        const ontimes = parseInt(data.ontime, 10);
-
-        for (let i = ontimes; i <= data.offtime; i++) {
-          arr.push({ time: i, sit: data.sit });
-        }
-        const CoAdmindId = data._id;
-
-        CoAdminTime.updateOne(
-          { CoAdmindId: CoAdmindId },
-          { $set: { time: arr } }
-        ).then((data) => {
-          // console.log(data);
-        });
-      });
-
-      res.send(data);
-    });
-  } else {
-    await CoAdmindetails.updateOne(
-      { _id: id },
-      {
-        $set: {
-          name: name,
-          contact: contact,
-          email: email,
-          sit: sit,
-          ontime: ontime,
-          offtime: offtime,
-          logo: logo,
-          pic: pic,
-        },
-      }
-    ).then(async (data) => {
-      await CoAdmindetails.findOne({ _id: id }).then((data) => {
-        let arr = [];
-        const ontimes = parseInt(data.ontime, 10);
-
-        for (let i = ontimes; i <= data.offtime; i++) {
-          arr.push({ time: i, sit: data.sit });
-        }
-        const CoAdmindId = data._id;
-
-        CoAdminTime.updateOne(
-          { CoAdmindId: CoAdmindId },
-          { $set: { time: arr } }
-        ).then((data) => {
-          // console.log(data);
-        });
-      });
-      res.send(data);
-    });
-  }
 };
 
 //coadmin edit sit
