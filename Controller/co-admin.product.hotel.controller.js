@@ -13,7 +13,7 @@ exports.coadminproductadd = (req, res) => {
   const category = req.body.category;
   const pic = [];
   pic = req.body.pic;
-
+  console.log(pic);
   const CoAdmindId = req.body.CoAdmindId;
   const data = {
     name: name,
