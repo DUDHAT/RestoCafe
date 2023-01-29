@@ -20,6 +20,7 @@ exports.fileFilter = (req, file, cb) => {
     file.mimetype == "image/jpg" ||
     file.mimetype == "image/jpeg"
   ) {
+    console.log("4");
     cb(null, true);
   } else {
     console.log("5");
