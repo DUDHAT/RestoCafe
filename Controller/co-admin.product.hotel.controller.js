@@ -41,45 +41,23 @@ exports.coadminproductedit = (req, res) => {
   const rating = req.body.rating;
   const price = req.body.price;
   const category = req.body.category;
-  const pic = [];
-  const pics = req.files;
+  let pic = [req.body.pic];
   const CoAdmindId = req.body.CoAdmindId;
-  pics.forEach((element) => {
-    pic.push(element.filename);
+  CoAdminProductAdd.updateOne(
+    { _id: id, CoAdmindId: CoAdmindId },
+    {
+      $set: {
+        name: name,
+        details: details,
+        rating: rating,
+        price: price,
+        category: category,
+        pic: pic,
+      },
+    }
+  ).then((data) => {
+    res.send(data);
   });
-
-  if (pic == "") {
-    CoAdminProductAdd.updateOne(
-      { _id: id, CoAdmindId: CoAdmindId },
-      {
-        $set: {
-          name: name,
-          details: details,
-          rating: rating,
-          price: price,
-          category: category,
-        },
-      }
-    ).then((data) => {
-      res.send(data);
-    });
-  } else {
-    CoAdminProductAdd.updateOne(
-      { _id: id, CoAdmindId: CoAdmindId },
-      {
-        $set: {
-          name: name,
-          details: details,
-          rating: rating,
-          price: price,
-          category: category,
-          pic: pic,
-        },
-      }
-    ).then((data) => {
-      res.send(data);
-    });
-  }
 };
 
 exports.coadminproductdelete = (req, res) => {
