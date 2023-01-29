@@ -12,11 +12,9 @@ exports.coadminproductadd = (req, res) => {
   const price = req.body.price;
   const category = req.body.category;
   const pic = [];
-  const pics = req.files;
+  pic = req.body.pic;
+
   const CoAdmindId = req.body.CoAdmindId;
-  pics.forEach((element) => {
-    pic.push(element.filename);
-  });
   const data = {
     name: name,
     details: details,
