@@ -44,57 +44,6 @@ exports.CoAdminSignin = (req, res) => {
   });
 };
 
-//coadmin self information insert
-// exports.CoAdminInsertDetails = (req, res) => {
-//   console.log("hello world");
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-//   const name = req.body.name;
-//   const contact = req.body.contact;
-//   const email = req.body.email;
-//   const logos = req.files;
-//   const sit = req.body.sit;
-//   const ontime = req.body.ontime;
-//   const offtime = req.body.offtime;
-//   let logo;
-//   let pic = [];
-//   logos.forEach((element) => {
-//     if (element.fieldname == "logo") {
-//       logo = element.filename;
-//     }
-//     if (element.fieldname == "pic") {
-//       pic.push(element.filename);
-//     }
-//   });
-//   const data = {
-//     name: name,
-//     contact: contact,
-//     email: email,
-//     sit: sit,
-//     ontime: ontime,
-//     offtime: offtime,
-//     logo: logo,
-//     pic: pic,
-//   };
-//   CoAdmindetails.create(data).then((data) => {
-//     let arr = [];
-//     for (let i = data.ontime; i <= data.offtime; i++) {
-//       arr.push({ time: i, sit: data.sit });
-//     }
-//     const CoAdmindId = data._id;
-//     const dummy = {
-//       time: arr,
-//       CoAdmindId: CoAdmindId,
-//     };
-//     CoAdminTime.create(dummy).then((data) => {
-//       // console.log(data);
-//     });
-//     res.send(data);
-//   });
-// };
-
 exports.CoAdminInsertDetails = (req, res) => {
   console.log("hello world");
   // con
