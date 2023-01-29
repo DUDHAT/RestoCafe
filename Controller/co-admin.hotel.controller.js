@@ -99,6 +99,7 @@ exports.CoAdminInsertDetails = (req, res) => {
   console.log("hello world");
   // con
   console.log(req.body);
+  res.json(req.body);
 };
 
 //coadmin self information edit
