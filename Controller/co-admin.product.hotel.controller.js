@@ -11,7 +11,7 @@ exports.coadminproductadd = (req, res) => {
   const rating = req.body.rating;
   const price = req.body.price;
   const category = req.body.category;
-  const pic = [];
+  let pic = [];
   pic = req.body.pic;
   console.log(pic);
   const CoAdmindId = req.body.CoAdmindId;
@@ -24,6 +24,7 @@ exports.coadminproductadd = (req, res) => {
     pic: pic,
     CoAdmindId: CoAdmindId,
   };
+  console.log(data);
   CoAdminProductAdd.create(data).then((data) => {
     res.send(data);
   });
