@@ -24,6 +24,10 @@ const UserBookHotel = new Schema({
     ref: "Userdetails",
     required: true,
   },
+  Time: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("UserBookHotel", UserBookHotel);

@@ -102,6 +102,8 @@ exports.UserbookHotel = async (req, res) => {
     const ProductId = req.body.ProductId;
     const UserId = req.body.UserId;
     const arr = [];
+    const dateTime = new Date();
+    const Time = dateTime;
 
     CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
       const coadminid = data[0].CoAdmindId;
@@ -126,7 +128,7 @@ exports.UserbookHotel = async (req, res) => {
             { coadminid: coadminid },
             { $set: { time: Array_obj } }
           ).then((data) => {
-            console.log(data);
+            // console.log(data);
             // res.send(data);
           });
           UserBookHotel.create({
@@ -135,6 +137,7 @@ exports.UserbookHotel = async (req, res) => {
             time,
             ProductId,
             UserId,
+            Time,
           }).then((data) => {
             // console.log(data);
             res.send(data);
