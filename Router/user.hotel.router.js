@@ -29,8 +29,8 @@ User_router.post(
 User_router.post(
   "/User-Foeget-Password",
   [
-    body("email", "Email is required").isEmail(),
-    body("password", "logo is required").trim(),
+    body("email", "Email is required").isEmail().isLength({ min: 1 }),
+    body("password", "password is required").trim().isLength({ min: 1 }),
   ],
   UserController.UserFoegetPassword
 );
