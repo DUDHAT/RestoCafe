@@ -79,7 +79,9 @@ exports.UserFoegetPassword = (req, res) => {
       const hpassword = bcrypt.hash(password, saltRounds).then((hash) => {
         Userdetails.updateOne({ email }, { $set: { password: hash } }).then(
           (data) => {
-            res.send(data);
+            Userdetails.find({ email }).then((data) => {
+              res.send(data);
+            });
           }
         );
       });
