@@ -168,14 +168,24 @@ exports.CoAdminEditSit = async (req, res) => {
 
 exports.coAdminShowSit = async (req, res) => {
   const coadminId = req.body.coadminId;
-  CoAdminTime.find({ coadminId: coadminId }).then((data) => {
-    console.log(data);
-    for (var i = 1; i <= data.length; i++) {
-      if (coadminId == data.coadminId) {
-        res.send({ data: data, response: "success" });
-      }
-    }
-  });
+  let arr = [];
+  // console.log(coadminId == element.CoAdmindId);
+  CoAdminTime.find({ coadminId: coadminId })
+    .then((data) => {
+      data.forEach((element) => {
+        console.log(coadminId == element.CoAdmindId);
+        if (coadminId != element.CoAdmindId) {
+        } else {
+          arr.push(element);
+          // res.send({ data: element, response: "success" });
+        }
+      });
+      res.send({ data: arr, response: "success" });
+      // res.end();
+    })
+    .catch((err) => {
+      res.send({ response: "faill" });
+    });
 };
 
 exports.edittime = async (req, res) => {
