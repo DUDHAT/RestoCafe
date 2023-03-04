@@ -168,8 +168,13 @@ exports.CoAdminEditSit = async (req, res) => {
 
 exports.coAdminShowSit = async (req, res) => {
   const coadminId = req.body.coadminId;
-  CoAdminTime.findOne({ coadminId: coadminId }).then((data) => {
-    res.send({ data: data, response: "success" });
+  CoAdminTime.find({ coadminId: coadminId }).then((data) => {
+    console.log(data);
+    for (var i = 1; i <= data.length; i++) {
+      if (coadminId == data.coadminId) {
+        res.send({ data: data, response: "success" });
+      }
+    }
   });
 };
 
