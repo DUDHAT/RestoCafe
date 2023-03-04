@@ -83,7 +83,7 @@ exports.CoAdminInsertDetails = (req, res) => {
     CoAdminTime.create(dummy).then((data) => {
       console.log(data);
     });
-    res.send(data);
+    res.send({ data: data, response: "success" });
   });
 };
 
@@ -136,7 +136,7 @@ exports.CoAdminEditDetails = async (req, res) => {
       });
     });
 
-    res.send(data);
+    res.send({ data: data, response: "success" });
   });
 };
 
@@ -158,14 +158,14 @@ exports.CoAdminEditSit = async (req, res) => {
     ).then((data) => {
       // console.log(data);
     });
-    res.send(data);
+    res.send({ data: data, response: "success" });
   });
 };
 
 exports.coAdminShowSit = async (req, res) => {
   const coadminId = req.body.coadminId;
   CoAdminTime.find({ coadminId: coadminId }).then((data) => {
-    res.send(data);
+    res.send({ data: data, response: "success" });
   });
 };
 

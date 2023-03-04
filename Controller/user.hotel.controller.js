@@ -53,13 +53,13 @@ exports.UserLogin = (req, res) => {
       );
       bcrypt.compare(password, data[0].password, (err, isMatch) => {
         if (isMatch) {
-          res.send({ data: data, token: token });
+          res.send({ data: data, token: token, response: "success" });
         } else {
           res.send({ message: "invelid password" });
         }
       });
     } else {
-      res.send("invelid email");
+      res.send({ message: "user not found" });
     }
   });
 };
@@ -82,7 +82,7 @@ exports.UserFoegetPassword = (req, res) => {
             console.log(data);
             if (data.acknowledged == true) {
               Userdetails.find({ email }).then((data) => {
-                res.send(data);
+                res.send({ data: data, response: "success" });
               });
             } else {
               res.send("pls enter valid password");
@@ -147,7 +147,7 @@ exports.UserbookHotel = async (req, res) => {
             Time,
           }).then((data) => {
             // console.log(data);
-            res.send(data);
+            res.send({ data: data, response: "success" });
           });
         } else {
           // console.log("hotel full");

@@ -75,7 +75,7 @@ exports.coadminproductdelete = (req, res) => {
   }
   CoAdminProductAdd.deleteOne({ _id: id, CoAdmindId: CoAdmindId }).then(
     (data) => {
-      res.send(data);
+      res.send({ data: data, response: "success" });
     }
   );
 };

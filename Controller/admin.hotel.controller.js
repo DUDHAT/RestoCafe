@@ -10,7 +10,7 @@ exports.SignUp = (req, res) => {
   const password = req.body.password;
 
   SuperAdminModel.create({ email: email, password: password }).then((data) => {
-    res.send({ data: data });
+    res.send({ data: data, response: "success" });
   });
 };
 
@@ -33,7 +33,7 @@ exports.SignIn = (req, res) => {
       SuperAdminModel.findOne({ email: email, password: password }).then(
         (data) => {
           if (data) {
-            res.send({ data: data });
+            res.send({ data: data, response: "success" });
           } else {
             res.send("invelid password");
           }
