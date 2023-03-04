@@ -145,21 +145,25 @@ exports.CoAdminEditSit = async (req, res) => {
   const coadminId = req.body.coadminId;
   const edittime = req.body.edittime;
   const sit = req.body.sit;
-  CoAdminTime.find({ coadminId: coadminId }).then((data) => {
-    const Array_obj = data[0].time;
-    for (const i of Array_obj) {
-      if (i.time == edittime) {
-        i.sit = sit;
+  CoAdminTime.find({ coadminId: coadminId })
+    .then((data) => {
+      const Array_obj = data[0].time;
+      for (const i of Array_obj) {
+        if (i.time == edittime) {
+          i.sit = sit;
+        }
       }
-    }
-    CoAdminTime.updateOne(
-      { coadminId: coadminId },
-      { $set: { time: Array_obj } }
-    ).then((data) => {
-      // console.log(data);
+      CoAdminTime.updateOne(
+        { coadminId: coadminId },
+        { $set: { time: Array_obj } }
+      ).then((data) => {
+        // console.log(data);
+      });
+      res.send({ data: data, response: "success" });
+    })
+    .catch((err) => {
+      res.send({ message: "coadmin not found" });
     });
-    res.send({ data: data, response: "success" });
-  });
 };
 
 exports.coAdminShowSit = async (req, res) => {
