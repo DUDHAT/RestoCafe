@@ -73,11 +73,11 @@ exports.coadminproductdelete = (req, res) => {
   if (CoAdmindId == "") {
     return res.send({ message: "CoAdmindId is required" });
   }
-  CoAdminProductAdd.deleteOne({ _id: id, CoAdmindId: CoAdmindId }).then(
-    (data) => {
+  CoAdminProductAdd.deleteOne({ _id: id, CoAdmindId: CoAdmindId })
+    .then((data) => {
       res.send({ data: data, response: "success" });
-    }
-  );
+    })
+    .catch((e) => res.send(e));
 };
 
 exports.coadminproductget = (req, res) => {
