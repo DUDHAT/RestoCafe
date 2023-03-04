@@ -157,9 +157,9 @@ exports.CoAdminEditSit = async (req, res) => {
         { coadminId: coadminId },
         { $set: { time: Array_obj } }
       ).then((data) => {
-        // console.log(data);
+        res.send({ data: data, response: "success" });
       });
-      res.send({ data: data, response: "success" });
+      // res.send({ data: arr, data, arr2, response: "success" });
     })
     .catch((err) => {
       res.send({ message: "coadmin not found" });
