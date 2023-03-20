@@ -25,7 +25,7 @@ app.use(coadminProduct_router);
 app.use(User_router);
 
 app.get("/", (req, res) => {
-  res.send("hello every one");
+  res.send("hello every one ");
 });
 
 app.listen(5151, () => {
