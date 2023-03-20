@@ -11,6 +11,6 @@ admin_router.post(
   AdminController.coadminregistration
 );
 admin_router.post("/show-All-book-hotel", AdminController.showAllbookhotel);
-admin_router.post("/show-All=Coadmin", AdminController.showAllCoadmin);
+admin_router.post("/show-All-Coadmin", AdminController.showAllCoadmin);
 
 module.exports = admin_router;
