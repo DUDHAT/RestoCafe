@@ -24,6 +24,10 @@ app.use(coadmin_router);
 app.use(coadminProduct_router);
 app.use(User_router);
 
+app.get("/", (req, res) => {
+  res.send("hello every one");
+});
+
 app.listen(5151, () => {
   console.log("server is runing " + 5151);
 });
