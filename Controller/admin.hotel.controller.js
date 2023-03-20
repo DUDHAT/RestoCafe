@@ -4,6 +4,7 @@ const saltRounds = 10;
 const SuperAdminModel = require("../Model/admin.hotel.model");
 const CoAdminRegistration = require("../Model/co-admin.hotel.model");
 const UserBookHotel = require("../Model/User.book.hotel.model");
+const CoAdmindetails = require("../Model/co-admindetails.hotel.model");
 
 exports.SignUp = (req, res) => {
   const email = req.body.email;
@@ -75,5 +76,11 @@ exports.coadminregistration = (req, res) => {
 exports.showAllbookhotel = (req, res) => {
   UserBookHotel.find().then((data) => {
     res.send({ data: data });
+  });
+};
+
+exports.showAllCoadmin = (req, res) => {
+  CoAdmindetails.find().then((data) => {
+    res.send(data);
   });
 };
