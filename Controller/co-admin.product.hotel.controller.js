@@ -13,16 +13,19 @@ exports.coadminproductadd = (req, res) => {
   const category = req.body.category;
   let pic = [req.body.pic];
   // pic = req.body.pic;
-  console.log(pic);
+  console.log(pic[0]);
+  const lo = pic[0];
+  const a = lo.slice(2, -2);
+  console.log(a);
   const CoAdmindId = req.body.CoAdmindId;
-  console.log(CoAdmindId, "CoAdmindId");
+  // console.log(CoAdmindId, "CoAdmindId");
   const data = {
     name: name,
     details: details,
     rating: rating,
     price: price,
     category: category,
-    pic: pic,
+    pic: a,
     CoAdmindId: CoAdmindId,
   };
   console.log(data);
