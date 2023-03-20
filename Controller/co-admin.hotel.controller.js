@@ -32,7 +32,7 @@ exports.CoAdminSignin = (req, res) => {
             "secretOrPrivateKeysecretOrPrivateKey",
             { expiresIn: "1h" }
           );
-          res.send({ data: data[0], token: token });
+          res.send({ data: data[0], token: token, response: "success" });
           //   res.send(data);
         } else {
           res.send("err");
