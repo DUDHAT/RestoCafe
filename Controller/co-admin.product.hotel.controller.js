@@ -15,6 +15,7 @@ exports.coadminproductadd = (req, res) => {
   // pic = req.body.pic;
   console.log(pic);
   const CoAdmindId = req.body.CoAdmindId;
+  console.log(CoAdmindId, "CoAdmindId");
   const data = {
     name: name,
     details: details,
