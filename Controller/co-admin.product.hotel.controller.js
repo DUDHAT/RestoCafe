@@ -16,6 +16,8 @@ exports.coadminproductadd = (req, res) => {
   console.log(pic[0]);
   const lo = pic[0];
   const a = lo.slice(2, -2);
+  const b = a.replaceAll('\"', '"');
+  console.log(b);
   console.log(a);
   const CoAdmindId = req.body.CoAdmindId;
   // console.log(CoAdmindId, "CoAdmindId");
@@ -25,11 +27,12 @@ exports.coadminproductadd = (req, res) => {
     rating: rating,
     price: price,
     category: category,
-    pic: a,
+    pic: b,
     CoAdmindId: CoAdmindId,
   };
-  console.log(data);
+  // console.log(data);
   CoAdminProductAdd.create(data).then((data) => {
+    console.log(data);
     res.send({ data, response: "success" });
   });
 };
