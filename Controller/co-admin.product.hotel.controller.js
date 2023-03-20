@@ -27,7 +27,7 @@ exports.coadminproductadd = (req, res) => {
   };
   console.log(data);
   CoAdminProductAdd.create(data).then((data) => {
-    res.send(data);
+    res.send({ data, response: "success" });
   });
 };
 
@@ -57,7 +57,7 @@ exports.coadminproductedit = (req, res) => {
       },
     }
   ).then((data) => {
-    res.send(data);
+    res.send({ data, response: "success" });
   });
 };
 
@@ -91,6 +91,6 @@ exports.coadminproductget = (req, res) => {
     res.send({ message: "CoAdmin Id is required" });
   }
   CoAdminProductAdd.find({ CoAdmindId: CoAdmindId }).then((data) => {
-    res.send({ data: data });
+    res.send({ data: data, response: "success" });
   });
 };
