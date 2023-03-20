@@ -13,12 +13,15 @@ exports.coadminproductadd = (req, res) => {
   const category = req.body.category;
   let pic = [req.body.pic];
   // pic = req.body.pic;
-  console.log(pic[0]);
+  // console.log(pic[0]);
   const lo = pic[0];
   const a = lo.slice(2, -2);
-  const b = a.replaceAll('\"', '"');
-  console.log(b);
-  console.log(a);
+  // const b = a.replaceAll(',\"https', ',"https');
+  // // var str1 = "a\d\k";
+  // var aw = a.replace(/\\/g, "");
+
+  // // console.log(b);
+  // // console.log(a);
   const CoAdmindId = req.body.CoAdmindId;
   // console.log(CoAdmindId, "CoAdmindId");
   const data = {
@@ -27,12 +30,12 @@ exports.coadminproductadd = (req, res) => {
     rating: rating,
     price: price,
     category: category,
-    pic: b,
+    pic: a,
     CoAdmindId: CoAdmindId,
   };
   // console.log(data);
   CoAdminProductAdd.create(data).then((data) => {
-    console.log(data);
+    // console.log(data);
     res.send({ data, response: "success" });
   });
 };
