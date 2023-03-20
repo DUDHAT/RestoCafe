@@ -86,7 +86,7 @@ exports.coadminproductget = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const CoAdmindId = req.body.CoAdmindId;
+  const CoAdmindId = req.params.CoAdmindId;
   if (CoAdmindId == "") {
     res.send({ message: "CoAdmin Id is required" });
   }
