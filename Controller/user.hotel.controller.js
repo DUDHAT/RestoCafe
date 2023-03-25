@@ -7,6 +7,7 @@ const UserBookHotel = require("../Model/User.book.hotel.model");
 const CoAdminTime = require("../Model/co-admin.time.hotel.model");
 const { body, validationResult } = require("express-validator");
 const CoAdminRegistration = require("../Model/co-admin.hotel.model");
+const CoAdmindetails = require("../Model/co-admindetails.hotel.model");
 
 exports.UserRegistration = (req, res) => {
   const errors = validationResult(req);
@@ -96,7 +97,7 @@ exports.UserFoegetPassword = (req, res) => {
 };
 
 exports.UserfindAllhotel = (req, res) => {
-  CoAdminRegistration.find().then((data) => {
+  CoAdmindetails.find().then((data) => {
     res.send(data);
     console.log(data[0]);
   });
