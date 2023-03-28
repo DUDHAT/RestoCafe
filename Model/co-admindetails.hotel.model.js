@@ -14,6 +14,14 @@ const CoAdmindetails = new Schema({
     type: String,
     required: true,
   },
+  address: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   sit: {
     type: String,
     required: true,

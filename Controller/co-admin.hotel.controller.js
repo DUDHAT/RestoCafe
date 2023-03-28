@@ -56,6 +56,8 @@ exports.CoAdminInsertDetails = (req, res) => {
   const sit = req.body.sit;
   const ontime = req.body.ontime;
   const offtime = req.body.offtime;
+  const description = req.body.description;
+  const address = req.body.address;
   let logo = req.body.logo;
   let pic = [];
   pic = req.body.pic;
@@ -65,6 +67,8 @@ exports.CoAdminInsertDetails = (req, res) => {
     contact: contact,
     email: email,
     sit: sit,
+    address,
+    description,
     ontime: ontime,
     offtime: offtime,
     logo: logo,
