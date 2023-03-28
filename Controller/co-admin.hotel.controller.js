@@ -104,6 +104,8 @@ exports.CoAdminEditDetails = async (req, res) => {
   const email = req.body.email;
   const sit = req.body.sit;
   const ontime = req.body.ontime;
+  const description = req.body.description;
+  const address = req.body.address;
   const offtime = req.body.offtime;
   let logo = req.body.logo;
 
@@ -117,6 +119,8 @@ exports.CoAdminEditDetails = async (req, res) => {
         contact: contact,
         email: email,
         sit: sit,
+        description,
+        address,
         ontime: ontime,
         offtime: offtime,
         logo: logo,
