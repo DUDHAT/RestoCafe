@@ -85,7 +85,7 @@ exports.CoAdminInsertDetails = (req, res) => {
       CoAdmindId: CoAdmindId,
     };
     CoAdminTime.create(dummy).then((data) => {
-      console.log(data);
+      // console.log(data);
     });
     res.send({ data: data, response: "success" });
   });
@@ -177,17 +177,18 @@ exports.CoAdminEditSit = async (req, res) => {
 exports.coAdminShowSit = async (req, res) => {
   const coadminId = req.body.coadminId;
   let arr = [];
-  // console.log(coadminId == element.CoAdmindId);
-  CoAdminTime.find({ coadminId: coadminId })
+  // console.log(coadminId);
+  CoAdminTime.find({ CoAdmindId: coadminId })
     .then((data) => {
       data.forEach((element) => {
-        console.log(coadminId == element.CoAdmindId);
+        // console.log(coadminId == element.CoAdmindId);
         if (coadminId != element.CoAdmindId) {
         } else {
           arr.push(element);
           // res.send({ data: element, response: "success" });
         }
       });
+      // console.log(arr);
       res.send({ data: arr, response: "success" });
       // res.end();
     })

@@ -81,7 +81,7 @@ exports.UserFoegetPassword = (req, res) => {
       const hpassword = bcrypt.hash(password, saltRounds).then((hash) => {
         Userdetails.updateOne({ email }, { $set: { password: hash } }).then(
           (data) => {
-            console.log(data);
+            // console.log(data);
             if (data.acknowledged == true) {
               Userdetails.find({ email }).then((data) => {
                 res.send({ data: data, response: "success" });
@@ -99,7 +99,7 @@ exports.UserFoegetPassword = (req, res) => {
 exports.UserfindAllhotel = (req, res) => {
   CoAdmindetails.find().then((data) => {
     res.send(data);
-    console.log(data[0]);
+    // console.log(data[0]);
   });
 };
 
@@ -116,7 +116,8 @@ exports.UserbookHotel = async (req, res) => {
 
     CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
       const coadminid = data[0].CoAdmindId;
-      CoAdminTime.find({ coadminid: coadminid }).then((data) => {
+      // console.log(coadminid);
+      CoAdminTime.find({ CoAdmindId: coadminid }).then((data) => {
         // console.log(data);
         const Array_obj = data[0].time;
         for (const i of Array_obj) {
@@ -126,13 +127,13 @@ exports.UserbookHotel = async (req, res) => {
         }
         Array_obj.forEach((Element) => {
           // console.log(Element);
-          if (Element.sit <= 0) {
+          if (Element.sit < 0) {
             arr.push("hello");
             return res.send("hotel is full");
           }
         });
         if (arr == "") {
-          console.log(Array_obj);
+          // console.log(Array_obj);
           CoAdminTime.updateOne(
             { coadminid: coadminid },
             { $set: { time: Array_obj } }
@@ -159,4 +160,23 @@ exports.UserbookHotel = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+exports.UserEditbookHotel = async (req, res) => {
+  const address = req.body.address;
+  const member = req.body.member;
+  const time = req.body.time;
+  const ProductId = req.body.ProductId;
+  const UserId = req.body.UserId;
+  const arr = [];
+  const dateTime = new Date();
+  const Time = dateTime;
+  CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
+    const coadminid = data[0].CoAdmindId;
+    // console.log(coadminid);
+    CoAdminTime.find({ CoAdmindId: coadminid }).then((data) => {
+      // console.log(data);
+      res.send(data);
+    });
+  });
 };
