@@ -14,6 +14,8 @@ coadminProduct_router.post(
     body("rating", "rating is required").trim(),
     body("price", "price is required").trim(),
     body("category", "category is required").trim(),
+    body("description", "description is required").trim(),
+    body("address", "address is required").trim(),
   ],
   coAdminProductController.coadminproductadd
 );
@@ -27,6 +29,8 @@ coadminProduct_router.post(
     body("rating", "rating is required").trim(),
     body("price", "price is required").trim(),
     body("category", "category is required").trim(),
+    body("description", "description is required").trim(),
+    body("address", "address is required").trim(),
   ],
   coAdminProductController.coadminproductedit
 );
