@@ -84,6 +84,6 @@ exports.showAllCoadmin = (req, res) => {
   CoAdmindetails.find().then((data) => {
     console.log(data[0]);
 
-    res.send(data);
+    res.send({ data });
   });
 };
