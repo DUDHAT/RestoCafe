@@ -83,7 +83,7 @@ exports.showAllCoadmin = (req, res) => {
   const arr = [];
   CoAdmindetails.find().then((data) => {
     console.log(data[0]);
-    const a = data.pop();
-    res.send(a);
+
+    res.send({ data });
   });
 };
