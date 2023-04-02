@@ -59,7 +59,8 @@ exports.CoAdminInsertDetails = (req, res) => {
   const description = req.body.description;
   const address = req.body.address;
   let logo = req.body.logo;
-  let pic = req.body.pic;
+  let pic = [];
+  pic = req.body.pic;
   console.log("pic================", pic);
   const lo = pic[0];
   const a = lo.slice(1, -2);
