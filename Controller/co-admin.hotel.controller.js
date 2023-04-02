@@ -60,8 +60,6 @@ exports.CoAdminInsertDetails = (req, res) => {
   const address = req.body.address;
   let logo = req.body.logo;
   let pic = [req.body.pic];
-  // pic = req.body.pic;
-  // console.log(pic[0]);
   const lo = pic[0];
   const a = lo.slice(1, -2);
   // let pic = [];
@@ -114,8 +112,9 @@ exports.CoAdminEditDetails = async (req, res) => {
   const offtime = req.body.offtime;
   let logo = req.body.logo;
 
-  let pic = [];
-  pic = req.body.pic;
+  let pic = [req.body.pic];
+  const lo = pic[0];
+  const a = lo.slice(1, -2);
   await CoAdmindetails.updateOne(
     { _id: id },
     {
@@ -129,6 +128,7 @@ exports.CoAdminEditDetails = async (req, res) => {
         ontime: ontime,
         offtime: offtime,
         logo: logo,
+        pic: a,
       },
     }
   ).then(async (data) => {
