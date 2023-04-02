@@ -76,7 +76,7 @@ exports.CoAdminInsertDetails = (req, res) => {
     ontime: ontime,
     offtime: offtime,
     logo: logo,
-    pic: a,
+    pic: pic,
   };
   CoAdmindetails.create(data).then((data) => {
     let arr = [];
