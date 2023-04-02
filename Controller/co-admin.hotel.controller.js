@@ -50,6 +50,7 @@ exports.CoAdminInsertDetails = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+  console.log(req.body);
   const name = req.body.name;
   const contact = req.body.contact;
   const email = req.body.email;
