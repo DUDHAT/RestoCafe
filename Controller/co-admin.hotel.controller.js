@@ -59,12 +59,13 @@ exports.CoAdminInsertDetails = (req, res) => {
   const description = req.body.description;
   const address = req.body.address;
   let logo = req.body.logo;
-  let pic = [req.body.pic];
+  let pic = req.body.pic;
+  console.log(pic);
   const lo = pic[0];
   const a = lo.slice(1, -2);
   // let pic = [];
   // pic = req.body.pic;
-
+  console.log(a);
   const data = {
     name: name,
     contact: contact,
@@ -112,7 +113,7 @@ exports.CoAdminEditDetails = async (req, res) => {
   const offtime = req.body.offtime;
   let logo = req.body.logo;
 
-  let pic = [req.body.pic];
+  let pic = req.body.pic;
   const lo = pic[0];
   const a = lo.slice(1, -2);
   await CoAdmindetails.updateOne(
