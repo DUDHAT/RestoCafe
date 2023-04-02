@@ -98,7 +98,7 @@ exports.UserFoegetPassword = (req, res) => {
 
 exports.UserfindAllhotel = (req, res) => {
   CoAdmindetails.find().then((data) => {
-    res.send(data);
+    res.send({ data });
     // console.log(data[0]);
   });
 };
