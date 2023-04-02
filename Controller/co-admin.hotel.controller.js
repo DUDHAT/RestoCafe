@@ -133,6 +133,7 @@ exports.CoAdminEditDetails = async (req, res) => {
     }
   ).then(async (data) => {
     await CoAdmindetails.findOne({ _id: id }).then((data) => {
+      console.log(data);
       let arr = [];
       const ontimes = parseInt(data.ontime, 10);
 
