@@ -50,7 +50,7 @@ exports.CoAdminInsertDetails = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  console.log(req.body);
+  console.log("++++++++++++++-", req.body);
   const name = req.body.name;
   const contact = req.body.contact;
   const email = req.body.email;
@@ -64,6 +64,7 @@ exports.CoAdminInsertDetails = (req, res) => {
   pic = req.body.pic;
   console.log("pic================", pic);
   const lo = pic[0];
+  console.log("lllloo", lo);
   const a = lo.slice(1, -2);
   // let pic = [];
   // pic = req.body.pic;
