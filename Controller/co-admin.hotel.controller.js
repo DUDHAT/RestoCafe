@@ -178,7 +178,7 @@ exports.CoAdminEditSit = async (req, res) => {
   const coadminId = req.body.coadminId;
   const edittime = req.body.edittime;
   const sit = req.body.sit;
-  CoAdminTime.find({ coadminId: coadminId })
+  CoAdminTime.find({ CoAdmindId: coadminId })
     .then((data) => {
       const Array_obj = data[0].time;
       for (const i of Array_obj) {
@@ -187,7 +187,7 @@ exports.CoAdminEditSit = async (req, res) => {
         }
       }
       CoAdminTime.updateOne(
-        { coadminId: coadminId },
+        { CoAdmindId: coadminId },
         { $set: { time: Array_obj } }
       ).then((data) => {
         res.send({ data: data, response: "success" });
