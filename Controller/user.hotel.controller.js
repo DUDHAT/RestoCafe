@@ -283,7 +283,7 @@ exports.Usergetbookhotel = async (req, res) => {
       responsecode: 0,
     });
   }
-  UserBookHotel.find({ _id: id }).then((data) => {
-    res.send(data);
+  UserBookHotel.find({ UserId: id }).then((data) => {
+    res.send({ data: data, response: "success" });
   });
 };
