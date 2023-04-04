@@ -208,7 +208,7 @@ exports.UserEditbookHotel = async (req, res) => {
     const a = UserBookHotel.find({ _id: userbookhotelId });
     console.log("aaaaaaaaaaaaaa", a);
     console.log("hello");
-    CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
+    CoAdminProductAdd.findOne({ _id: ProductId }).then((data) => {
       if (data == "") {
         return res.send({
           data: "product not found",
