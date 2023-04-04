@@ -105,7 +105,7 @@ exports.UserfindAllhotel = (req, res) => {
 
 exports.UserbookHotel = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const address = req.body.address;
     const member = req.body.member;
     const time = req.body.time;
@@ -115,52 +115,72 @@ exports.UserbookHotel = async (req, res) => {
     const dateTime = new Date();
     const Time = dateTime;
     if (ProductId == "") {
-      CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
-        const coadminid = data[0].CoAdmindId;
-        // console.log(coadminid);
-        CoAdminTime.find({ CoAdmindId: coadminid }).then((data) => {
-          // console.log(data);
-          const Array_obj = data[0].time;
-          for (const i of Array_obj) {
-            if (i.time == time) {
-              i.sit = i.sit - member;
-            }
-          }
-          Array_obj.forEach((Element) => {
-            // console.log(Element);
-            if (Element.sit < 0) {
-              arr.push("hello");
-              return res.send("hotel is full");
-            }
+      return res.send({
+        data: "pls enter ProductId",
+        status: false,
+        responsecode: 0,
+      });
+    }
+    console.log("hello");
+    CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
+      if (data == "") {
+        return res.send({
+          data: "product not found",
+          status: false,
+          responsecode: 0,
+        });
+      }
+      const coadminid = data[0].CoAdmindId;
+      // console.log(coadminid);
+
+      CoAdminTime.find({ CoAdmindId: coadminid }).then((data) => {
+        // console.log(data);
+        if (data == "") {
+          return res.send({
+            data: "coadmin not found",
+            status: false,
+            responsecode: 0,
           });
-          if (arr == "") {
-            // console.log(Array_obj);
-            CoAdminTime.updateOne(
-              { coadminid: coadminid },
-              { $set: { time: Array_obj } }
-            ).then((data) => {
-              // console.log(data);
-              // res.send(data);
-            });
-            UserBookHotel.create({
-              address,
-              member,
-              time,
-              ProductId,
-              UserId,
-              Time,
-            }).then((data) => {
-              // console.log(data);
-              res.send({ data: data, response: "success" });
-            });
-          } else {
-            // console.log("hotel full");
+        }
+        const Array_obj = data[0].time;
+        for (const i of Array_obj) {
+          if (i.time == time) {
+            i.sit = i.sit - member;
+          }
+        }
+        Array_obj.forEach((Element) => {
+          // console.log(Element);
+          if (Element.sit < 0) {
+            arr.push("hello");
+            return res.send("hotel is full");
           }
         });
+        if (arr == "") {
+          // console.log(Array_obj);
+          CoAdminTime.updateOne(
+            { coadminid: coadminid },
+            { $set: { time: Array_obj } }
+          ).then((data) => {
+            // console.log(data);
+            // res.send(data);
+          });
+          UserBookHotel.create({
+            address,
+            member,
+            time,
+            ProductId,
+            UserId,
+            Time,
+          }).then((data) => {
+            // console.log(data);
+            res.send({ data: data, response: "success" });
+          });
+        } else {
+          // console.log("hotel full");
+        }
       });
-    } else {
-      res.send("pls enter ProductId");
-    }
+    });
+    // }
   } catch (error) {
     console.log(error);
   }
