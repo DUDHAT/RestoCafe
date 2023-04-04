@@ -42,6 +42,11 @@ const CoAdmindetails = new Schema({
     type: Array,
     required: true,
   },
+  CoAdmindId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "CoAdminRegistration",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("CoAdmindetails", CoAdmindetails);
