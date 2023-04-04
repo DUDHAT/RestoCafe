@@ -62,13 +62,13 @@ exports.CoAdminInsertDetails = (req, res) => {
   let logo = req.body.logo;
   let pic = [];
   pic = req.body.pic;
-  console.log("pic================", pic);
+  // console.log("pic================", pic);
   const lo = pic[0];
-  console.log("lllloo", lo);
-  const a = lo.slice(1, -2);
+  // console.log("lllloo", pic[0]);
+  const a = pic.slice(1, -1);
   // let pic = [];
   // pic = req.body.pic;
-  console.log("a--------------------", a);
+  // console.log("a--------------------", a);
   const data = {
     name: name,
     contact: contact,
@@ -79,7 +79,7 @@ exports.CoAdminInsertDetails = (req, res) => {
     ontime: ontime,
     offtime: offtime,
     logo: logo,
-    pic: pic,
+    pic: a,
   };
   CoAdmindetails.create(data).then((data) => {
     let arr = [];
