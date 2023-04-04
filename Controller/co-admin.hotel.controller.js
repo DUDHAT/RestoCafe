@@ -200,10 +200,16 @@ exports.CoAdminEditSit = async (req, res) => {
 
 exports.coAdminShowSit = async (req, res) => {
   const coadminId = req.body.coadminId;
+  console.log(req.body);
+  console.log(coadminId);
   let arr = [];
+  CoAdminTime.find().then((data) => {
+    console.log(data);
+  });
   // console.log(coadminId);
   CoAdminTime.find({ CoAdmindId: coadminId })
     .then((data) => {
+      console.log(data);
       data.forEach((element) => {
         // console.log(coadminId == element.CoAdmindId);
         if (coadminId != element.CoAdmindId) {
