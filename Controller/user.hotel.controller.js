@@ -105,6 +105,7 @@ exports.UserfindAllhotel = (req, res) => {
 
 exports.UserbookHotel = async (req, res) => {
   try {
+    console.log(req.body);
     const address = req.body.address;
     const member = req.body.member;
     const time = req.body.time;
