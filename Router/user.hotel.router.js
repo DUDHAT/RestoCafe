@@ -39,4 +39,6 @@ User_router.post("/User-book-Hotel", UserController.UserbookHotel);
 
 User_router.post("/User-edit-book-Hotel", UserController.UserEditbookHotel);
 User_router.post("/User-find-All-hotel", UserController.UserfindAllhotel);
+User_router.get("/User-get-book-hotel", UserController.Usergetbookhotel);
+
 module.exports = User_router;

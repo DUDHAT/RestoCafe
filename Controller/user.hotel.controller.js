@@ -273,3 +273,17 @@ exports.UserEditbookHotel = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.Usergetbookhotel = async (req, res) => {
+  const id = req.body.id;
+  if (id == "") {
+    return res.send({
+      data: "id not found",
+      status: false,
+      responsecode: 0,
+    });
+  }
+  UserBookHotel.find({ _id: id }).then((data) => {
+    res.send(data);
+  });
+};
