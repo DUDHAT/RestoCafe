@@ -205,7 +205,9 @@ exports.UserEditbookHotel = async (req, res) => {
         responsecode: 0,
       });
     }
-    const a = UserBookHotel.findOne({ _id: userbookhotelId });
+    const a = UserBookHotel.findOne({ _id: userbookhotelId }).then((data) => {
+      console.log(data);
+    });
     console.log("aaaaaaaaaaaaaa", a);
     console.log("hello");
     CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
