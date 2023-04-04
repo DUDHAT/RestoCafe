@@ -229,6 +229,7 @@ exports.UserEditbookHotel = async (req, res) => {
         const Array_obj = data[0].time;
         for (const i of Array_obj) {
           if (i.time == time) {
+            console.log(i.sit + member);
             i.sit = i.sit + member;
           }
         }
