@@ -121,6 +121,14 @@ exports.CoAdminEditDetails = async (req, res) => {
   let pic = req.body.pic;
   const lo = pic[0];
   const a = pic.slice(1, -2);
+  if (id == "") {
+    return res.send({
+      data: "coadmin not found",
+      status: false,
+      responsecode: 0,
+    });
+  }
+
   await CoAdmindetails.updateOne(
     { _id: id },
     {
@@ -139,7 +147,11 @@ exports.CoAdminEditDetails = async (req, res) => {
     }
   ).then(async (data) => {
     await CoAdmindetails.findOne({ _id: id }).then((data) => {
-      console.log(data);
+      // console.log(data);
+      if (data == null) {
+        return;
+      }
+
       let arr = [];
       const ontimes = parseInt(data.ontime, 10);
 
