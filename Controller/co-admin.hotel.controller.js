@@ -106,6 +106,7 @@ exports.CoAdminInsertDetails = (req, res) => {
         });
       } else {
         console.log("-----------------------");
+        console.log("-----------------------");
         return res.send({
           data: data,
           status: false,
