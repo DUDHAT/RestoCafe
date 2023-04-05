@@ -46,59 +46,77 @@ exports.CoAdminSignin = (req, res) => {
 
 //coadmin self information insert
 exports.CoAdminInsertDetails = (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  console.log("++++++++++++++-", req.body);
-  const name = req.body.name;
-  const contact = req.body.contact;
-  const email = req.body.email;
-  const sit = req.body.sit;
-  const ontime = req.body.ontime;
-  const offtime = req.body.offtime;
-  const description = req.body.description;
-  const address = req.body.address;
-  const CoAdmindId = req.body.CoAdmindId;
-  let logo = req.body.logo;
-  let pic = [];
-  pic = req.body.pic;
-  console.log("pic================", pic);
-  const lo = pic[0];
-  // console.log("lllloo", pic[0]);
-  const a = pic.slice(1, -1);
-  console.log(a);
-  // let pic = [];
-  // pic = req.body.pic;
-  // console.log("a--------------------", a);
-  const data = {
-    name: name,
-    contact: contact,
-    email: email,
-    sit: sit,
-    address,
-    description,
-    ontime: ontime,
-    offtime: offtime,
-    logo: logo,
-    pic: a,
-    CoAdmindId,
-  };
-  CoAdmindetails.create(data).then((data) => {
-    let arr = [];
-    for (let i = data.ontime; i <= data.offtime; i++) {
-      arr.push({ time: i, sit: data.sit });
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-    const CoAdmindId = data._id;
-    const dummy = {
-      time: arr,
-      CoAdmindId: CoAdmindId,
-    };
-    CoAdminTime.create(dummy).then((data) => {
+    // console.log("++++++++++++++-", req.body);
+    const name = req.body.name;
+    const contact = req.body.contact;
+    const email = req.body.email;
+    const sit = req.body.sit;
+    const ontime = req.body.ontime;
+    const offtime = req.body.offtime;
+    const description = req.body.description;
+    const address = req.body.address;
+    const CoAdmindId = req.body.CoAdmindId;
+    let logo = req.body.logo;
+    let pic = [];
+    pic = req.body.pic;
+    // console.log("pic================", pic);
+    const lo = pic[0];
+    // console.log("lllloo", pic[0]);
+    const a = pic.slice(1, -1);
+    // console.log(a);
+    // let pic = [];
+    // pic = req.body.pic;
+    CoAdmindetails.find({ CoAdmindId }).then((data) => {
       // console.log(data);
+      if (data == "") {
+        console.log("+++++++++++++++++++++");
+
+        const dataa = {
+          name: name,
+          contact: contact,
+          email: email,
+          sit: sit,
+          address,
+          description,
+          ontime: ontime,
+          offtime: offtime,
+          logo: logo,
+          pic: a,
+          CoAdmindId,
+        };
+        CoAdmindetails.create(dataa).then((data) => {
+          let arr = [];
+          for (let i = data.ontime; i <= data.offtime; i++) {
+            arr.push({ time: i, sit: data.sit });
+          }
+          const CoAdmindId = data._id;
+          const dummy = {
+            time: arr,
+            CoAdmindId: CoAdmindId,
+          };
+          CoAdminTime.create(dummy).then((data) => {
+            // console.log(data);
+          });
+          res.send({ data: data, response: "success" });
+        });
+      } else {
+        console.log("-----------------------");
+        return res.send({
+          data: data,
+          status: false,
+          responsecode: 0,
+        });
+      }
     });
-    res.send({ data: data, response: "success" });
-  });
+    // console.log("a--------------------", a);
+  } catch (error) {
+    res.send(error);
+  }
 };
 
 //coadmin self information edit
