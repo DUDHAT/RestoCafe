@@ -14,7 +14,7 @@ const UserBookHotel = new Schema({
     type: String,
     required: true,
   },
-  ProductId: {
+  coadminid: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "CoAdminProductAdd",
     required: true,
