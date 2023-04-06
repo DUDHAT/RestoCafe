@@ -15,13 +15,14 @@ exports.coadminproductadd = (req, res) => {
   // pic = req.body.pic;
   // console.log(pic[0]);
   const lo = pic[0];
+  console.log(lo);
   const a = lo.slice(1, -2);
   // const b = a.replaceAll(',\"https', ',"https');
   // // var str1 = "a\d\k";
   // var aw = a.replace(/\\/g, "");
 
   // // console.log(b);
-  // // console.log(a);
+  console.log(a);
   const CoAdmindId = req.body.CoAdmindId;
   // console.log(CoAdmindId, "CoAdmindId");
   const data = {
