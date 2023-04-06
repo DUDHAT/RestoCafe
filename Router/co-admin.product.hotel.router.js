@@ -49,6 +49,9 @@ coadminProduct_router.get(
   coAdminProductController.coadminproductget
 );
 
-coadminProduct_router.get("show-Prodect", coAdminProductController.showProdect);
+coadminProduct_router.get(
+  "/show-Prodect",
+  coAdminProductController.showProdect
+);
 
 module.exports = coadminProduct_router;
