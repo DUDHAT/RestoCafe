@@ -82,12 +82,12 @@ exports.coadminproductdelete = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  if (id == "") {
-    return res.send({ message: "id is required" });
-  }
-  if (CoAdmindId == "") {
-    return res.send({ message: "CoAdmindId is required" });
-  }
+  // if (id == "") {
+  //   return res.send({ message: "id is required" });
+  // }
+  // if (CoAdmindId == "") {
+  //   return res.send({ message: "CoAdmindId is required" });
+  // }
   CoAdminProductAdd.deleteOne({ _id: id, CoAdmindId: CoAdmindId })
     .then((data) => {
       res.send({ data: data, response: "success" });
