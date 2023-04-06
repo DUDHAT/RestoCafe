@@ -109,3 +109,9 @@ exports.coadminproductget = (req, res) => {
     res.send({ data: data, response: "success" });
   });
 };
+
+exports.showProdect = (req, res) => {
+  CoAdminProductAdd.find().then((data) => {
+    res.send({ data: data, response: "success" });
+  });
+};
