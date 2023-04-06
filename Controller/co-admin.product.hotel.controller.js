@@ -53,6 +53,9 @@ exports.coadminproductedit = (req, res) => {
   const price = req.body.price;
   const category = req.body.category;
   let pic = [req.body.pic];
+  const lo = pic[0];
+  console.log(lo);
+  const a = lo.slice(1, -2);
   const CoAdmindId = req.body.CoAdmindId;
   CoAdminProductAdd.updateOne(
     { _id: id, CoAdmindId: CoAdmindId },
@@ -63,7 +66,7 @@ exports.coadminproductedit = (req, res) => {
         rating: rating,
         price: price,
         category: category,
-        pic: pic,
+        pic: a,
       },
     }
   ).then((data) => {
