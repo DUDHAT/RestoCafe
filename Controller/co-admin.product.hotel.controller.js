@@ -15,7 +15,7 @@ exports.coadminproductadd = (req, res) => {
   // pic = req.body.pic;
   // console.log(pic[0]);
   const lo = pic[0];
-  const a = lo.slice(2, -2);
+  const a = lo.slice(1, -2);
   // const b = a.replaceAll(',\"https', ',"https');
   // // var str1 = "a\d\k";
   // var aw = a.replace(/\\/g, "");
