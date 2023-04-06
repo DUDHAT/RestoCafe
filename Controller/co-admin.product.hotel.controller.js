@@ -76,6 +76,7 @@ exports.coadminproductedit = (req, res) => {
 };
 
 exports.coadminproductdelete = (req, res) => {
+  console.log("++++++++++++", req.body);
   const id = req.body.id;
   const CoAdmindId = req.body.CoAdmindId;
   const errors = validationResult(req);
