@@ -56,6 +56,7 @@ exports.coadminproductedit = (req, res) => {
   const lo = pic[0];
   console.log(lo);
   const a = lo.slice(1, -2);
+  console.log(a);
   const CoAdmindId = req.body.CoAdmindId;
   CoAdminProductAdd.updateOne(
     { _id: id, CoAdmindId: CoAdmindId },
