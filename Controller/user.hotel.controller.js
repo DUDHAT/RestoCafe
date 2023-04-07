@@ -34,7 +34,7 @@ exports.UserRegistration = (req, res) => {
         });
       });
     } else {
-      res.send({ response: "email already exists" });
+      res.send({ response: "email already exists", data: data });
     }
   });
 };
