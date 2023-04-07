@@ -30,11 +30,11 @@ exports.UserRegistration = (req, res) => {
           password: hash,
           address,
         }).then((data) => {
-          res.send(data);
+          res.send({ data, response: "success" });
         });
       });
     } else {
-      res.send({ message: "email already exists" });
+      res.send({ response: "email already exists" });
     }
   });
 };
@@ -57,11 +57,11 @@ exports.UserLogin = (req, res) => {
         if (isMatch) {
           res.send({ data: data, token: token, response: "success" });
         } else {
-          res.send({ message: "invelid password" });
+          res.send({ response: "invelid password", data: data });
         }
       });
     } else {
-      res.send({ message: "user not found" });
+      res.send({ response: "user not found" });
     }
   });
 };
