@@ -55,7 +55,7 @@ exports.UserLogin = (req, res) => {
       );
       bcrypt.compare(password, data[0].password, (err, isMatch) => {
         if (isMatch) {
-          res.send({ data: data, response: "success" });
+          res.send({ data: data[0], response: "success" });
         } else {
           res.send({ response: "invelid password", data: {} });
         }
