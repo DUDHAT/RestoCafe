@@ -188,8 +188,9 @@ exports.CoAdminEditDetails = async (req, res) => {
         // console.log(data);
       });
     });
-
-    res.send({ data: data, response: "success" });
+    CoAdmindetails.find({ _id: id }).then((data) => {
+      res.send({ data: data, response: "success" });
+    });
   });
 };
 
