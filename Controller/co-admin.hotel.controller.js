@@ -126,7 +126,7 @@ exports.CoAdminEditDetails = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-
+  console.log(req.body);
   const id = req.body.id;
   const name = req.body.name;
   const contact = req.body.contact;
@@ -179,6 +179,7 @@ exports.CoAdminEditDetails = async (req, res) => {
         arr.push({ time: i, sit: data.sit });
       }
       const CoAdmindId = data._id;
+      console.log("+++++++++------------", CoAdmindId);
 
       CoAdminTime.updateOne(
         { CoAdmindId: CoAdmindId },
