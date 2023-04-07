@@ -35,11 +35,11 @@ exports.CoAdminSignin = (req, res) => {
           res.send({ data: data[0], token: token, response: "success" });
           //   res.send(data);
         } else {
-          res.send("err");
+          res.send({ response: "invelid password", data: [] });
         }
       });
     } else {
-      res.send("invelid password");
+      res.send({ response: "user not found" });
     }
   });
 };
