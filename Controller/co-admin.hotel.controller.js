@@ -35,7 +35,7 @@ exports.CoAdminSignin = (req, res) => {
           res.send({ data: data[0], token: token, response: "success" });
           //   res.send(data);
         } else {
-          res.send({ response: "invelid password", data: [] });
+          res.send({ response: "invelid password", data: {} });
         }
       });
     } else {
