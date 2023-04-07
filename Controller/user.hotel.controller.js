@@ -57,7 +57,7 @@ exports.UserLogin = (req, res) => {
         if (isMatch) {
           res.send({ data: data, response: "success" });
         } else {
-          res.send({ response: "invelid password", data: data });
+          res.send({ response: "invelid password", data: {} });
         }
       });
     } else {
