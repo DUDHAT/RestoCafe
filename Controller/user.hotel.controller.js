@@ -280,7 +280,7 @@ exports.UserEditbookHotel = async (req, res) => {
 };
 
 exports.Usergetbookhotel = async (req, res) => {
-  const id = req.body.id;
+  const id = req.query.id;
   if (id == "") {
     return res.send({
       data: "id not found",
