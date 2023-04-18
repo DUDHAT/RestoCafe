@@ -48,7 +48,7 @@ exports.UserLogin = (req, res) => {
   const password = req.body.password;
   Userdetails.find({ email }).then((data) => {
     console.log("+++++++++++*******++++", data);
-    if (data == "") {
+    if (data) {
       const token = jwt.sign(
         { email: data.email, id: data._id },
         "secretOrPrivateKeysecretOrPrivateKey",
