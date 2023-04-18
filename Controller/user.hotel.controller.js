@@ -40,31 +40,36 @@ exports.UserRegistration = (req, res) => {
 };
 
 exports.UserLogin = (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  const email = req.body.email;
-  const password = req.body.password;
-  Userdetails.find({ email }).then((data) => {
-    console.log("+++++++++++*******++++", data);
-    if (data != []) {
-      const token = jwt.sign(
-        { email: data.email, id: data._id },
-        "secretOrPrivateKeysecretOrPrivateKey",
-        { expiresIn: "1h" }
-      );
-      bcrypt.compare(password, data[0].password, (err, isMatch) => {
-        if (isMatch) {
-          res.send({ data: data[0], response: "success" });
-        } else {
-          res.send({ response: "invelid password", data: {} });
-        }
-      });
-    } else {
-      res.send({ response: "user not found" });
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-  });
+    const email = req.body.email;
+    const password = req.body.password;
+    Userdetails.find({ email }).then((data) => {
+      // console.log("+++++++++++*******++++", data[0].email);
+      console.log("++**********", data[0]);
+      if (data[0] != undefined) {
+        const token = jwt.sign(
+          { email: data.email, id: data._id },
+          "secretOrPrivateKeysecretOrPrivateKey",
+          { expiresIn: "1h" }
+        );
+        bcrypt.compare(password, data[0].password, (err, isMatch) => {
+          if (isMatch) {
+            res.send({ data: data[0], response: "success" });
+          } else {
+            res.send({ response: "invelid password", data: {} });
+          }
+        });
+      } else {
+        res.send({ response: "user not found" });
+      }
+    });
+  } catch (error) {
+    res.send({ response: "user not found" });
+  }
 };
 
 exports.UserFoegetPassword = (req, res) => {
