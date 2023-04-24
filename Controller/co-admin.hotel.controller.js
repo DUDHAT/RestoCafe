@@ -23,7 +23,7 @@ exports.CoAdminSignin = (req, res) => {
   }
 
   CoAdminRegistration.find({ email }).then((data) => {
-    if (data) {
+    if (data == "") {
       //   console.log(data[0].password);
       bcrypt.compare(password, data[0].password, (err, isMatch) => {
         if (isMatch) {

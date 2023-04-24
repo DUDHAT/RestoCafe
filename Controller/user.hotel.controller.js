@@ -222,7 +222,7 @@ exports.UserEditbookHotel = async (req, res) => {
       // console.log(coadminid);
 
       CoAdminTime.find({ CoAdmindId: coadminid }).then((data) => {
-        // console.log(data);
+        console.log("++++--------------", data);
         if (data == "") {
           return res.send({
             data: "coadmin not found",
@@ -233,10 +233,11 @@ exports.UserEditbookHotel = async (req, res) => {
         const Array_obj = data[0].time;
         for (const i of Array_obj) {
           if (i.time == time) {
-            console.log(i.sit + member);
+            // console.log(i.sit + member);
             i.sit = i.sit + member;
           }
         }
+        console.log(Array_obj);
         Array_obj.forEach((Element) => {
           // console.log(Element);
           if (Element.sit < 0) {
@@ -291,4 +292,49 @@ exports.Usergetbookhotel = async (req, res) => {
   UserBookHotel.find({ UserId: id }).then((data) => {
     res.send({ data: data, response: "success" });
   });
+};
+
+exports.UserDeleteHotel = async (req, res) => {
+  try {
+    // console.log(req.body);
+    const UserId = req.body.UserId;
+    const userbookhotelId = req.body.userbookhotelId;
+    const arr = [];
+    const dateTime = new Date();
+    const Time = dateTime;
+
+    const a = UserBookHotel.findOne({ _id: userbookhotelId }).then((data) => {
+      console.log(data);
+      if (data == null) {
+        return res.send({
+          data: "coadmin not found",
+          status: false,
+          responsecode: 0,
+        });
+      } else {
+        const coadminid = data.coadminid;
+        const time = data.time;
+        const member = data.member;
+        console.log(member);
+        // console.log(coadminid);
+        CoAdminTime.find({ CoAdmindId: coadminid }).then((data) => {
+          // console.log(data[0].time);
+          const Array_obj = data[0].time;
+          for (const i of Array_obj) {
+            if (i.time == time) {
+              // console.log(i.sit + member);
+              i.sit = parseInt(i.sit) + member;
+            }
+          }
+        });
+        UserBookHotel.deleteOne({ _id: userbookhotelId }).then((data) => {
+          // console.log(data);
+          res.send({ data: data, response: "success" });
+        });
+        // res.send(data);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
