@@ -326,12 +326,13 @@ exports.UserDeleteHotel = async (req, res) => {
               i.sit = parseInt(i.sit) + member;
             }
           }
+          console.log(Array_obj);
+          UserBookHotel.deleteOne({ _id: userbookhotelId }).then((data) => {
+            // console.log(data);
+            res.send({ data: data, response: "success" });
+          });
         });
-        console.log(Array_obj);
-        UserBookHotel.deleteOne({ _id: userbookhotelId }).then((data) => {
-          // console.log(data);
-          res.send({ data: data, response: "success" });
-        });
+
         // res.send(data);
       }
     });
