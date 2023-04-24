@@ -198,43 +198,113 @@ exports.UserEditbookHotel = async (req, res) => {
     const arr = [];
     const dateTime = new Date();
     const Time = dateTime;
-    if (ProductId == "") {
-      return res.send({
-        data: "pls enter ProductId",
-        status: false,
-        responsecode: 0,
-      });
-    }
-    const a = UserBookHotel.findOne({ _id: userbookhotelId }).then((data) => {
-      console.log(data);
-    });
-    console.log("aaaaaaaaaaaaaa", a);
-    console.log("hello");
-    CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
+    const coadminid = req.body.CoAdmindId;
+    // if (ProductId == "") {
+    //   return res.send({
+    //     data: "pls enter ProductId",
+    //     status: false,
+    //     responsecode: 0,
+    //   });
+    // }
+    // const a = UserBookHotel.findOne({ _id: userbookhotelId }).then((data) => {
+    //   console.log(data);
+    // });
+    // console.log("aaaaaaaaaaaaaa", a);
+    // console.log("hello");
+    // CoAdminProductAdd.find({ _id: ProductId }).then((data) => {
+    //   if (data == "") {
+    //     return res.send({
+    //       data: "product not found",
+    //       status: false,
+    //       responsecode: 0,
+    //     });
+    //   }
+    //   const coadminid = data[0].CoAdmindId;
+    // console.log(coadminid);
+
+    await CoAdminTime.find({ CoAdmindId: coadminid }).then(async (data) => {
+      console.log("++++--------------", data);
       if (data == "") {
         return res.send({
-          data: "product not found",
+          data: "coadmin not found",
           status: false,
           responsecode: 0,
         });
       }
-      const coadminid = data[0].CoAdmindId;
-      // console.log(coadminid);
-
-      CoAdminTime.find({ CoAdmindId: coadminid }).then((data) => {
-        console.log("++++--------------", data);
-        if (data == "") {
-          return res.send({
-            data: "coadmin not found",
-            status: false,
-            responsecode: 0,
-          });
-        }
-        const Array_obj = data[0].time;
+      const Array_obj = data[0].time;
+      const arrewe = [];
+      await UserBookHotel.findOne({ _id: userbookhotelId }).then((data) => {
+        console.log({ "+++++++++++++++++++++++++++++++++++++++++/*": data });
+        arrewe.push(data);
+      });
+      console.log("*********", arrewe);
+      const arraya = arrewe[0].member;
+      if (arraya == member) {
+        console.log("if");
+        UserBookHotel.updateOne(
+          { _id: userbookhotelId },
+          {
+            $set: {
+              address,
+              member,
+              time,
+              coadminid: coadminid,
+              UserId,
+              Time,
+            },
+          }
+        ).then((data) => {
+          return res.send({ data: data, response: "success" });
+        });
+      } else if (arraya < member) {
+        console.log("else if");
+        const a = member - arraya;
         for (const i of Array_obj) {
           if (i.time == time) {
             // console.log(i.sit + member);
-            i.sit = i.sit + member;
+            i.sit = i.sit + a;
+          }
+        }
+        // console.log(Array_obj);
+        Array_obj.forEach((Element) => {
+          // console.log(Element);
+          if (Element.sit < 0) {
+            arr.push("hello");
+            return res.send("hotel is full");
+          }
+        });
+        if (arr == "") {
+          // console.log(Array_obj);
+          CoAdminTime.updateOne(
+            { CoAdmindId: coadminid },
+            { $set: { time: Array_obj } }
+          ).then((data) => {
+            // console.log(data);
+            // res.send(data);
+          });
+          UserBookHotel.updateOne(
+            { _id: userbookhotelId },
+            {
+              $set: {
+                address,
+                member,
+                time,
+                coadminid: coadminid,
+                UserId,
+                Time,
+              },
+            }
+          ).then((data) => {
+            return res.send({ data: data, response: "success" });
+          });
+        }
+      } else {
+        console.log("else");
+        const aa = arraya - member;
+        for (const i of Array_obj) {
+          if (i.time == time) {
+            // console.log(i.sit + member);
+            i.sit = i.sit - aa;
           }
         }
         console.log(Array_obj);
@@ -248,7 +318,7 @@ exports.UserEditbookHotel = async (req, res) => {
         if (arr == "") {
           // console.log(Array_obj);
           CoAdminTime.updateOne(
-            { coadminid: coadminid },
+            { CoAdmindId: coadminid },
             { $set: { time: Array_obj } }
           ).then((data) => {
             // console.log(data);
@@ -261,19 +331,18 @@ exports.UserEditbookHotel = async (req, res) => {
                 address,
                 member,
                 time,
-                ProductId,
+                coadminid: coadminid,
                 UserId,
                 Time,
               },
             }
           ).then((data) => {
-            res.send({ data: data, response: "success" });
+            return res.send({ data: data, response: "success" });
           });
-        } else {
-          // console.log("hotel full");
         }
-      });
+      }
     });
+    // });
     // }
   } catch (error) {
     console.log(error);
