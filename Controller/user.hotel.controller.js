@@ -327,6 +327,13 @@ exports.UserDeleteHotel = async (req, res) => {
             }
           }
           console.log(Array_obj);
+          CoAdminTime.updateOne(
+            { coadminid: coadminid },
+            { $set: { time: Array_obj } }
+          ).then((data) => {
+            // console.log(data);
+            // res.send(data);
+          });
           UserBookHotel.deleteOne({ _id: userbookhotelId }).then((data) => {
             // console.log(data);
             res.send({ data: data, response: "success" });
