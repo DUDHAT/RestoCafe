@@ -158,7 +158,7 @@ exports.UserbookHotel = async (req, res) => {
       if (arr == "") {
         // console.log(Array_obj);
         CoAdminTime.updateOne(
-          { coadminid: coadminid },
+          { CoAdmindId: coadminid },
           { $set: { time: Array_obj } }
         ).then((data) => {
           // console.log(data);
@@ -328,7 +328,7 @@ exports.UserDeleteHotel = async (req, res) => {
           }
           console.log(Array_obj);
           CoAdminTime.updateOne(
-            { coadminid: coadminid },
+            { CoAdmindId: coadminid },
             { $set: { time: Array_obj } }
           ).then((data) => {
             // console.log(data);
