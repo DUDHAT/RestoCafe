@@ -297,7 +297,7 @@ exports.Usergetbookhotel = async (req, res) => {
 exports.UserDeleteHotel = async (req, res) => {
   try {
     // console.log(req.body);
-    const UserId = req.body.UserId;
+    // const UserId = req.body.UserId;
     const userbookhotelId = req.body.userbookhotelId;
     const arr = [];
     const dateTime = new Date();
@@ -327,6 +327,7 @@ exports.UserDeleteHotel = async (req, res) => {
             }
           }
         });
+        console.log(Array_obj);
         UserBookHotel.deleteOne({ _id: userbookhotelId }).then((data) => {
           // console.log(data);
           res.send({ data: data, response: "success" });
