@@ -298,7 +298,7 @@ exports.UserDeleteHotel = async (req, res) => {
   try {
     // console.log(req.body);
     // const UserId = req.body.UserId;
-    const userbookhotelId = req.body.userbookhotelId;
+    const userbookhotelId = req.query.userbookhotelId;
     const arr = [];
     const dateTime = new Date();
     const Time = dateTime;
