@@ -19,11 +19,12 @@ exports.CoAdminSignin = (req, res) => {
     return res.send("email is required");
   }
   if (!password) {
-    return res.send("email is required");
+    return res.send("password is required");
   }
 
   CoAdminRegistration.find({ email }).then((data) => {
-    if (data == "") {
+    // console.log(data[0] != undefined);
+    if (data[0] != undefined) {
       //   console.log(data[0].password);
       bcrypt.compare(password, data[0].password, (err, isMatch) => {
         if (isMatch) {
